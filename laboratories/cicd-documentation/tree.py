@@ -54,6 +54,15 @@ class Tree:
             return None
 
     def _find(self, data, node):
+        """Recursively search for a node containing the given data.
+
+            Args:
+                data (int): The value to search for.
+                node (Node): The current node used during recursive traversal.
+
+            Returns:
+                Node | None: The node containing data if found, otherwise None.
+            """
         if data == node.data:
             return node
         elif (data < node.data and node.left is not None):
@@ -62,24 +71,63 @@ class Tree:
             return self._find(data, node.right)
 
     def deleteTree(self):
+        """Delete all nodes from the tree.
+
+            Returns:
+                None
+            """
         self.root = None
 
     def printTree(self):
+        """Print all values from the tree using inorder traversal.
+
+           Returns:
+               None
+           """
         if self.root is not None:
             self._printInorderTree(self.root)
 
     def _printInorderTree(self, node):
+        """Print the tree using inorder traversal: left, root, right.
+
+           Args:
+               node (Node): The current node to print.
+
+           Returns:
+               None
+           """
         if node is not None:
             self._printInorderTree(node.left)
             print(str(node.data) + ' ')
             self._printInorderTree(node.right)
 
     def _printPreorderTree(self, node):
-        # TODO
-        pass
+        """Print the tree using preorder traversal: root, left, right.
+
+           Args:
+               node (Node): The current node to print.
+
+           Returns:
+               None
+              """
+        if node is not None:
+            print(str(node.data) + ' ')
+            self._printPreorderTree(node.left)
+            self._printPreorderTree(node.right)
+
+
+
 
     def _printPostorderTree(self, node):
-        # TODO
-        pass
+        """Print the tree using postorder traversal: left, right, root.
 
+           Args:
+               node (Node): The current node to print.
 
+           Returns:
+               None
+           """
+        if node is not None:
+            self._printPostorderTree(node.left)
+            self._printPostorderTree(node.right)
+            print(str(node.data) + ' ')
